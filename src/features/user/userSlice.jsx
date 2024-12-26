@@ -9,7 +9,7 @@ import {
 const initialState = {
   value: 0,
   status: "idle",
-  userOrders: [],
+  // userOrders: [],
   userInfo:null
 };
 
@@ -31,8 +31,8 @@ export const fetchLoggedInUserAsync = createAsyncThunk(
 
 export const updateUserAsync = createAsyncThunk(
   "user/updateUser",
-  async (id) => {
-    const response = await updateUser(id);
+  async (update) => {
+    const response = await updateUser(update);
     return response.data;
   }
 );
@@ -55,7 +55,7 @@ export const userSlice = createSlice({
       })
       .addCase(fetcheLoggedInUserOrdersAsync.fulfilled, (state, action) => {
         state.status = "idle";
-        state.userOrders = action.payload;
+        state.userInfo.orders = action.payload;
       })
       .addCase(fetchLoggedInUserAsync.pending, (state) => {
         state.status = "loading";
@@ -69,12 +69,12 @@ export const userSlice = createSlice({
       })
       .addCase(updateUserAsync.fulfilled, (state, action) => {
         state.status = "idle";
-        state.userOrders = action.payload;
+        state.userInfo = action.payload;
       });
   },
 });
 
-export const selectUserOrder = (state) => state.user.userOrders;
+export const selectUserOrder = (state) => state.user.userInfo.orders;
 export const selectUserInfo = (state) => state.user.userInfo;
 
 

@@ -6352,6 +6352,32 @@
         }
       ],
       "role": "user"
+    },
+    {
+      "id": "bbcb",
+      "email": "jeyaarthi@gmail.com",
+      "password": "Test@1234",
+      "addresses": [
+        {
+          "name": "Jeyaarthi ",
+          "email": "jeyaarthi@gmail.com",
+          "city": "Bangalore",
+          "state": "4656754",
+          "pinCode": "560078",
+          "phone": "985757574",
+          "street": "6th Main Road HSR"
+        },
+        {
+          "name": "Mouli",
+          "email": "mouli@gmail.com",
+          "phone": "9686495380",
+          "street": "5th Main Road HSR",
+          "city": "Chennai",
+          "state": "Tamil Naidu",
+          "pinCode": "560076"
+        }
+      ],
+      "role": "user"
     }
   ],
   "cart": [
@@ -8339,6 +8365,388 @@
         "street": "5th Main Road HSR",
         "city": "Chennai",
         "state": "4654645"
+      },
+      "status": "pending"
+    },
+    {
+      "id": "7628",
+      "items": [
+        {
+          "id": "6755",
+          "title": "Cooking Oil",
+          "description": "Versatile cooking oil suitable for frying, sautéing, and various culinary applications.",
+          "category": "groceries",
+          "price": 4.99,
+          "discountPercentage": 18.89,
+          "rating": 4.01,
+          "stock": 22,
+          "tags": [
+            "cooking essentials"
+          ],
+          "sku": "Q6ZP1UY8",
+          "weight": 8,
+          "dimensions": {
+            "width": 8.18,
+            "height": 27.45,
+            "depth": 27.88
+          },
+          "warrantyInformation": "Lifetime warranty",
+          "shippingInformation": "Ships in 1 month",
+          "availabilityStatus": "In Stock",
+          "reviews": [
+            {
+              "rating": 5,
+              "comment": "Would buy again!",
+              "date": "2024-05-23T08:56:21.620Z",
+              "reviewerName": "Mason Parker",
+              "reviewerEmail": "mason.parker@x.dummyjson.com"
+            },
+            {
+              "rating": 3,
+              "comment": "Poor quality!",
+              "date": "2024-05-23T08:56:21.620Z",
+              "reviewerName": "Jonathan Pierce",
+              "reviewerEmail": "jonathan.pierce@x.dummyjson.com"
+            },
+            {
+              "rating": 5,
+              "comment": "Would buy again!",
+              "date": "2024-05-23T08:56:21.620Z",
+              "reviewerName": "Alexander Hernandez",
+              "reviewerEmail": "alexander.hernandez@x.dummyjson.com"
+            }
+          ],
+          "returnPolicy": "60 days return policy",
+          "minimumOrderQuantity": 2,
+          "meta": {
+            "createdAt": "2024-05-23T08:56:21.620Z",
+            "updatedAt": "2024-05-23T08:56:21.620Z",
+            "barcode": "6707669443381",
+            "qrCode": "https://assets.dummyjson.com/public/qr-code.png"
+          },
+          "images": [
+            "https://cdn.dummyjson.com/products/images/groceries/Cooking%20Oil/1.png"
+          ],
+          "thumbnail": "https://cdn.dummyjson.com/products/images/groceries/Cooking%20Oil/thumbnail.png",
+          "quantity": 3,
+          "user": "5469"
+        }
+      ],
+      "totalAmount": 12,
+      "totalItems": 3,
+      "user": {
+        "id": "5469",
+        "email": "vedasri@gmail.com",
+        "password": "Test@1234",
+        "addresses": [
+          {
+            "name": "vedasri",
+            "email": "vedasri@gmail.com",
+            "phone": "8787886666",
+            "street": "5th Main Road HSR",
+            "city": "Chennai",
+            "state": "4654645"
+          }
+        ],
+        "role": "user"
+      },
+      "paymentMethod": "card",
+      "selectedAddress": {
+        "name": "vedasri",
+        "email": "vedasri@gmail.com",
+        "phone": "8787886666",
+        "street": "5th Main Road HSR",
+        "city": "Chennai",
+        "state": "4654645"
+      },
+      "status": "pending"
+    },
+    {
+      "id": "fa43",
+      "items": [
+        {
+          "id": "ecb1",
+          "title": "Asus Zenbook Pro Dual Screen Laptop",
+          "description": "The Asus Zenbook Pro Dual Screen Laptop is a high-performance device with dual screens, providing productivity and versatility for creative professionals.",
+          "category": "laptops",
+          "price": 1799.99,
+          "discountPercentage": 9.21,
+          "rating": 3.14,
+          "stock": 38,
+          "tags": [
+            "laptops"
+          ],
+          "brand": "Asus",
+          "sku": "4A9KFMBG",
+          "weight": 8,
+          "dimensions": {
+            "width": 19.67,
+            "height": 11.05,
+            "depth": 14.32
+          },
+          "warrantyInformation": "No warranty",
+          "shippingInformation": "Ships in 3-5 business days",
+          "availabilityStatus": "In Stock",
+          "reviews": [
+            {
+              "rating": 5,
+              "comment": "Very satisfied!",
+              "date": "2024-05-23T08:56:21.622Z",
+              "reviewerName": "Jack Ward",
+              "reviewerEmail": "jack.ward@x.dummyjson.com"
+            },
+            {
+              "rating": 1,
+              "comment": "Very disappointed!",
+              "date": "2024-05-23T08:56:21.622Z",
+              "reviewerName": "Ava Harris",
+              "reviewerEmail": "ava.harris@x.dummyjson.com"
+            },
+            {
+              "rating": 5,
+              "comment": "Great value for money!",
+              "date": "2024-05-23T08:56:21.622Z",
+              "reviewerName": "Brayden Fleming",
+              "reviewerEmail": "brayden.fleming@x.dummyjson.com"
+            }
+          ],
+          "returnPolicy": "No return policy",
+          "minimumOrderQuantity": 1,
+          "meta": {
+            "createdAt": "2024-05-23T08:56:21.622Z",
+            "updatedAt": "2024-05-23T08:56:21.622Z",
+            "barcode": "2899455033799",
+            "qrCode": "https://assets.dummyjson.com/public/qr-code.png"
+          },
+          "images": [
+            "https://cdn.dummyjson.com/products/images/laptops/Asus%20Zenbook%20Pro%20Dual%20Screen%20Laptop/1.png",
+            "https://cdn.dummyjson.com/products/images/laptops/Asus%20Zenbook%20Pro%20Dual%20Screen%20Laptop/2.png",
+            "https://cdn.dummyjson.com/products/images/laptops/Asus%20Zenbook%20Pro%20Dual%20Screen%20Laptop/3.png"
+          ],
+          "thumbnail": "https://cdn.dummyjson.com/products/images/laptops/Asus%20Zenbook%20Pro%20Dual%20Screen%20Laptop/thumbnail.png",
+          "quantity": 2,
+          "user": "bbcb"
+        },
+        {
+          "id": "0d9f",
+          "title": "Sports Sneakers Off White Red",
+          "description": "Another variant of the Sports Sneakers in Off White Red, featuring a unique design. These sneakers offer style and comfort for casual occasions.",
+          "category": "mens-shoes",
+          "price": 109.99,
+          "discountPercentage": 17.22,
+          "rating": 2.95,
+          "stock": 75,
+          "tags": [
+            "footwear",
+            "casual shoes"
+          ],
+          "brand": "Off White",
+          "sku": "1SFJZOT2",
+          "weight": 4,
+          "dimensions": {
+            "width": 18.32,
+            "height": 19.34,
+            "depth": 28.56
+          },
+          "warrantyInformation": "No warranty",
+          "shippingInformation": "Ships in 1 week",
+          "availabilityStatus": "In Stock",
+          "reviews": [
+            {
+              "rating": 5,
+              "comment": "Fast shipping!",
+              "date": "2024-05-23T08:56:21.623Z",
+              "reviewerName": "Madeline Simpson",
+              "reviewerEmail": "madeline.simpson@x.dummyjson.com"
+            },
+            {
+              "rating": 5,
+              "comment": "Awesome product!",
+              "date": "2024-05-23T08:56:21.623Z",
+              "reviewerName": "Mateo Nguyen",
+              "reviewerEmail": "mateo.nguyen@x.dummyjson.com"
+            },
+            {
+              "rating": 4,
+              "comment": "Very pleased!",
+              "date": "2024-05-23T08:56:21.623Z",
+              "reviewerName": "Ethan Fletcher",
+              "reviewerEmail": "ethan.fletcher@x.dummyjson.com"
+            }
+          ],
+          "returnPolicy": "No return policy",
+          "minimumOrderQuantity": 3,
+          "meta": {
+            "createdAt": "2024-05-23T08:56:21.623Z",
+            "updatedAt": "2024-05-23T08:56:21.623Z",
+            "barcode": "0839375107303",
+            "qrCode": "https://assets.dummyjson.com/public/qr-code.png"
+          },
+          "images": [
+            "https://cdn.dummyjson.com/products/images/mens-shoes/Sports%20Sneakers%20Off%20White%20Red/1.png",
+            "https://cdn.dummyjson.com/products/images/mens-shoes/Sports%20Sneakers%20Off%20White%20Red/2.png",
+            "https://cdn.dummyjson.com/products/images/mens-shoes/Sports%20Sneakers%20Off%20White%20Red/3.png",
+            "https://cdn.dummyjson.com/products/images/mens-shoes/Sports%20Sneakers%20Off%20White%20Red/4.png"
+          ],
+          "thumbnail": "https://cdn.dummyjson.com/products/images/mens-shoes/Sports%20Sneakers%20Off%20White%20Red/thumbnail.png",
+          "quantity": 2,
+          "user": "bbcb"
+        },
+        {
+          "id": "fd59",
+          "title": "Wooden Bathroom Sink With Mirror",
+          "description": "The Wooden Bathroom Sink with Mirror is a unique and stylish addition to your bathroom, featuring a wooden sink countertop and a matching mirror.",
+          "category": "furniture",
+          "price": 799.99,
+          "discountPercentage": 11.22,
+          "rating": 3.26,
+          "stock": 95,
+          "tags": [
+            "furniture",
+            "bathroom"
+          ],
+          "brand": "Bath Trends",
+          "sku": "7OLTIEVO",
+          "weight": 6,
+          "dimensions": {
+            "width": 7.32,
+            "height": 22.64,
+            "depth": 12.37
+          },
+          "warrantyInformation": "6 months warranty",
+          "shippingInformation": "Ships in 3-5 business days",
+          "availabilityStatus": "In Stock",
+          "reviews": [
+            {
+              "rating": 5,
+              "comment": "Highly recommended!",
+              "date": "2024-05-23T08:56:21.620Z",
+              "reviewerName": "Charlotte Lopez",
+              "reviewerEmail": "charlotte.lopez@x.dummyjson.com"
+            },
+            {
+              "rating": 1,
+              "comment": "Would not recommend!",
+              "date": "2024-05-23T08:56:21.620Z",
+              "reviewerName": "William Gonzalez",
+              "reviewerEmail": "william.gonzalez@x.dummyjson.com"
+            },
+            {
+              "rating": 2,
+              "comment": "Not worth the price!",
+              "date": "2024-05-23T08:56:21.620Z",
+              "reviewerName": "Ava Harrison",
+              "reviewerEmail": "ava.harrison@x.dummyjson.com"
+            }
+          ],
+          "returnPolicy": "7 days return policy",
+          "minimumOrderQuantity": 1,
+          "meta": {
+            "createdAt": "2024-05-23T08:56:21.620Z",
+            "updatedAt": "2024-05-23T08:56:21.620Z",
+            "barcode": "7839797529453",
+            "qrCode": "https://assets.dummyjson.com/public/qr-code.png"
+          },
+          "images": [
+            "https://cdn.dummyjson.com/products/images/furniture/Wooden%20Bathroom%20Sink%20With%20Mirror/1.png",
+            "https://cdn.dummyjson.com/products/images/furniture/Wooden%20Bathroom%20Sink%20With%20Mirror/2.png",
+            "https://cdn.dummyjson.com/products/images/furniture/Wooden%20Bathroom%20Sink%20With%20Mirror/3.png"
+          ],
+          "thumbnail": "https://cdn.dummyjson.com/products/images/furniture/Wooden%20Bathroom%20Sink%20With%20Mirror/thumbnail.png",
+          "quantity": 1,
+          "user": "bbcb"
+        },
+        {
+          "id": "6114",
+          "title": "Powder Canister New",
+          "description": "The Powder Canister is a finely milled setting powder designed to set makeup and control shine. With a lightweight and translucent formula, it provides a smooth and matte finish.",
+          "category": "beauty",
+          "price": 14,
+          "discountPercentage": 18.14,
+          "rating": 3.82,
+          "stock": 59,
+          "tags": [
+            "beauty",
+            "face powder"
+          ],
+          "brand": "Velvet Touch",
+          "sku": "9EN8WLT2",
+          "weight": 8,
+          "dimensions": {
+            "width": 24.16,
+            "height": 10.7,
+            "depth": 11.07
+          },
+          "warrantyInformation": "2 year warranty",
+          "shippingInformation": "Ships in 1-2 business days",
+          "availabilityStatus": "In Stock",
+          "reviews": [
+            {
+              "rating": 5,
+              "comment": "Very happy with my purchase!",
+              "date": "2024-05-23T08:56:21.618Z",
+              "reviewerName": "Ethan Thompson",
+              "reviewerEmail": "ethan.thompson@x.dummyjson.com"
+            },
+            {
+              "rating": 4,
+              "comment": "Great value for money!",
+              "date": "2024-05-23T08:56:21.618Z",
+              "reviewerName": "Levi Hicks",
+              "reviewerEmail": "levi.hicks@x.dummyjson.com"
+            },
+            {
+              "rating": 5,
+              "comment": "Highly impressed!",
+              "date": "2024-05-23T08:56:21.618Z",
+              "reviewerName": "Hazel Gardner",
+              "reviewerEmail": "hazel.gardner@x.dummyjson.com"
+            }
+          ],
+          "returnPolicy": "60 days return policy",
+          "minimumOrderQuantity": 25,
+          "meta": {
+            "createdAt": "2024-05-23T08:56:21.618Z",
+            "updatedAt": "2024-05-23T08:56:21.618Z",
+            "barcode": "0516267971277",
+            "qrCode": "https://assets.dummyjson.com/public/qr-code.png"
+          },
+          "images": [
+            "https://cdn.dummyjson.com/products/images/beauty/Powder%20Canister/1.png"
+          ],
+          "thumbnail": "https://cdn.dummyjson.com/products/images/beauty/Powder%20Canister/thumbnail.png",
+          "image": "https://cdn.dummyjson.com/products/images/beauty/Powder%20Canister/1.png",
+          "deleted": true,
+          "quantity": 1,
+          "user": "bbcb"
+        }
+      ],
+      "totalAmount": 4171,
+      "totalItems": 6,
+      "user": {
+        "id": "bbcb",
+        "email": "jeyaarthi@gmail.com",
+        "password": "Test@1234",
+        "addresses": [
+          {
+            "name": "Jeyaarthi ",
+            "email": "jeyaarthi@gmail.com",
+            "phone": "745757574",
+            "street": "6th Main Road HSR",
+            "city": "Bangalore",
+            "state": "4656754"
+          }
+        ],
+        "role": "user"
+      },
+      "paymentMethod": "cash",
+      "selectedAddress": {
+        "name": "Jeyaarthi ",
+        "email": "jeyaarthi@gmail.com",
+        "phone": "745757574",
+        "street": "6th Main Road HSR",
+        "city": "Bangalore",
+        "state": "4656754"
       },
       "status": "pending"
     }

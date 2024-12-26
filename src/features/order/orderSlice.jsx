@@ -10,7 +10,7 @@ const initialState = {
 };
 
 export const createOrderAsync = createAsyncThunk(
-  'counter/createOrder',
+  'order/createOrder',
   async (order) => {
     const response = await createOrder(order);
     return response.data;
@@ -19,7 +19,7 @@ export const createOrderAsync = createAsyncThunk(
 
 
 export const fetchAllOrdersAsync = createAsyncThunk(
-  'counter/fetchAllOrders',
+  'order/fetchAllOrders',
   async ({pagination}) => {
     const response = await fetchAllOrders(pagination);
     return response.data;
@@ -29,7 +29,7 @@ export const fetchAllOrdersAsync = createAsyncThunk(
 
 
 export const updateOrderAsync = createAsyncThunk(
-  'counter/updateOrder',
+  'order/updateOrder',
   async (order) => {
     const response = await updateOrder(order);
     return response.data;

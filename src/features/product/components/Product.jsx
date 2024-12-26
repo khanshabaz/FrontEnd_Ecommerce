@@ -23,7 +23,7 @@ import {
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  fetchAllProductsAsync,
+
   fetchBrandsAsync,
   fetchCategoriesAsync,
   fetchProductsByFiltersAsync,
@@ -35,9 +35,9 @@ import {
 import { Pagination } from "../../../common/Pagination";
 
 const sortOptions = [
-  { name: "Best Rating", sort: "-rating", order: "DESC", current: false },
-  { name: "Price: Low to High", sort: "price", order: "ASC", current: false },
-  { name: "Price: High to Low", sort: "-price", order: "DESC", current: false },
+  { name: "Best Rating", sort: "rating", order: "desc", current: false },
+  { name: "Price: Low to High", sort: "price", order: "asc", current: false },
+  { name: "Price: High to Low", sort: "price", order: "desc", current: false },
 ];
 
 function classNames(...classes) {
@@ -48,6 +48,7 @@ export default function Product() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const dispatch = useDispatch();
   const products = useSelector(selectAllProducts);
+  console.log(products)
   const totalItems = useSelector(selectTotalItems);
   const [filter, setFilter] = useState({});
   const [sort, setSort] = useState({});
@@ -103,15 +104,20 @@ export default function Product() {
     setPage(page);
   };
 
-  useEffect(() => {
-    dispatch(fetchAllProductsAsync());
-  }, [dispatch]);
+
 
   useEffect(() => {
     const pagination = { _page: page, _per_page: ITEMS_PER_PAGE };
     dispatch(fetchProductsByFiltersAsync({ filter, sort, pagination, search }));
   }, [dispatch, filter, sort, page, search]);
 
+  
+  useEffect(() => {
+    setPage(1)
+  },[totalItems,sort])
+
+
+  
   useEffect(() => {
     dispatch(fetchBrandsAsync());
     dispatch(fetchCategoriesAsync());
@@ -405,6 +411,9 @@ export default function Product() {
                                 </p>
                               </div>
                             </div>
+                            {product.stock<=0 && (<div>
+                                <p className="text-sm text-red-400">out of stock</p>
+                              </div>)}
                           </div>
                         </Link>
                       ))}

@@ -12,12 +12,11 @@ import {
   createOrderAsync,
   selectCurrentOrder,
 } from "../features/order/orderSlice";
-// import { selectUserInfo} from "../features/user/userSlice";
-import { selectLoggedInUser, updateUserAsync } from "../features/auth/authSlice";
+import { selectUserInfo,updateUserAsync} from "../features/user/userSlice";
 import { discountedPrice } from "../app/common";
 
 export default function Checkout() {
-  const user = useSelector(selectLoggedInUser);
+  const user = useSelector(selectUserInfo);
   const [selectedAddress, setSelectedAddress] = useState(null);
   const [paymentMethod, setPaymentMethod] = useState(null);
   const currentOrder = useSelector(selectCurrentOrder);
@@ -35,14 +34,14 @@ export default function Checkout() {
 
   const totalAmount =
     Math.round(
-      items.reduce((amount, item) =>discountedPrice(item) * item.quantity + amount, 0) *
+      items.reduce((amount, item) =>discountedPrice(item.product) * item.quantity + amount, 0) *
         100
     ) / 100;
 
   const totalItems = items.reduce((total, item) => item.quantity + total, 0);
 
   const handleQuantity = (e, item) => {
-    dispatch(updateCartAsync({ ...item, quantity: +e.target.value }));
+    dispatch(updateCartAsync({id:item.id, quantity: +e.target.value }));
   };
 
   const handleRemove = (e, id) => {
@@ -64,7 +63,7 @@ export default function Checkout() {
       items,
       totalAmount,
       totalItems,
-      user,
+      user:user.id,
       paymentMethod,
       selectedAddress,
       status: "pending",
@@ -386,8 +385,8 @@ export default function Checkout() {
                         <li key={item.id} className="flex py-6">
                           <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                             <img
-                              alt={item.title}
-                              src={item.thumbnail}
+                              alt={item.product.title}
+                              src={item.product.thumbnail}
                               className="h-full w-full object-cover object-center"
                             />
                           </div>
@@ -396,12 +395,12 @@ export default function Checkout() {
                             <div>
                               <div className="flex justify-between text-base font-medium text-gray-900">
                                 <h3>
-                                  <a href={item.href}>{item.title}</a>
+                                  <a href={item.product.href}>{item.product.title}</a>
                                 </h3>
-                                <p className="ml-4">${item.price}</p>
+                                <p className="ml-4">${item.product.price}</p>
                               </div>
                               <p className="mt-1 text-sm text-gray-500">
-                                {item.brand}
+                                {item.product.brand}
                               </p>
                             </div>
                             <div className="flex flex-1 items-end justify-between text-sm">

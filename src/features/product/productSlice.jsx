@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import {  createProduct, fetchAllProducts, fetchBrands, fetchCategories, fetchProductById, fetchProductsByFilters, updateProduct} from './productAPI';
+import {  createProduct, fetchBrands, fetchCategories, fetchProductById, fetchProductsByFilters, updateProduct} from './productAPI';
 
 const initialState = {
   products: [],
@@ -11,26 +11,19 @@ const initialState = {
   filterProducts:[]
 };
 
-export const fetchAllProductsAsync = createAsyncThunk(
-  'product/fetchAllProducts',
-  async () => {
-    const response = await fetchAllProducts();
-    return response.data;
-  }
-);
 
 export const fetchAllProductsByIdAsync = createAsyncThunk(
   'product/fetchProductById',
-  async (id) => {//8
-    const response = await fetchProductById(id);//8
+  async (id) => {
+    const response = await fetchProductById(id);
     return response.data;
   }
 );
 
 export const fetchProductsByFiltersAsync = createAsyncThunk(
   'product/fetchProductsByFilters',
-  async ({filter,sort,pagination,search}) => {
-    const response = await fetchProductsByFilters(filter,sort,pagination,search);
+  async ({filter,sort,pagination,search, admin}) => {
+    const response = await fetchProductsByFilters(filter,sort,pagination,search, admin);
     return response.data;
   }
 );
@@ -81,13 +74,6 @@ export const productSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchAllProductsAsync.pending, (state) => {
-        state.status = 'loading';
-      })
-      .addCase(fetchAllProductsAsync.fulfilled, (state, action) => {
-        state.status = 'idle';
-        state.products=action.payload;
-      })
       .addCase(fetchProductsByFiltersAsync.pending, (state) => {
         state.status = 'loading';
       })
@@ -135,7 +121,7 @@ export const productSlice = createSlice({
         const index = state.products.findIndex(
           (product) => product.id === action.payload.id
         );
-        state.products[index] = action.payload;//new Product
+        state.products[index] = action.payload;
      
       })
   },

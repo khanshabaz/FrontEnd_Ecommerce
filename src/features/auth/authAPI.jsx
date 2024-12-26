@@ -1,42 +1,39 @@
 export function createUser(userData) {
-    return new Promise(async (resolve) =>{
-      const response = await fetch('http://localhost:3001/users',{
-        method:'POST',
-        body:JSON.stringify(userData),
-        headers:{'content-type':'application/json'},
-      }) 
-      const data = await response.json()
-      //Todo:on server it will only return some info of user(not password)
-      resolve({data})
-    }
-    );
-  }
+  return new Promise(async (resolve) => {
+    const response = await fetch("http://localhost:3000/auth/signup", {
+      method: "POST",
+      body: JSON.stringify(userData),
+      headers: { "content-type": "application/json" },
+    });
+    const data = await response.json();
+    //Todo:on server it will only return some info of user(not password)
+    resolve({ data });
+  });
+}
 
-
-  export function checkUser(loginInfo) {
-    const email=loginInfo.email;
-    const password=loginInfo.password;
-
-    return new Promise(async (resolve,reject) =>{
-      const response = await fetch('http://localhost:3001/users?email='+email)
-     const data= await response.json()
-    
-     if(data.length){
-      if(password===data[0].password){//user is present in database
-        resolve({data:data[0]});
-      }else{
-        reject({message:"Wrong credentials"})
+export function checkUser(loginInfo) {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const response = await fetch("http://localhost:3000/auth/login", {
+        method: "POST",
+        body: JSON.stringify(loginInfo),
+        headers: { "content-type": "application/json" },
+      });
+      if (response.ok) {
+        const data = await response.json();
+        resolve({ data });
+      } else {
+        const error = await response.json();
+        reject(error );
       }
-     }else{
-      reject({message:"user not found"})
-     }  
+    } catch (error) {
+      reject(error);
     }
-    );
-  }
+  });
+}
 
-  export function signOut(userId) {
-    return new Promise(async (resolve) =>{
-      resolve({data:"success"})
-    }
-    );
-  }
+export function signOut(userId) {
+  return new Promise(async (resolve) => {
+    resolve({ data: "success" });
+  });
+}

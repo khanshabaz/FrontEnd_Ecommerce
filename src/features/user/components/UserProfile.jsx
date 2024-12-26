@@ -16,12 +16,12 @@ export default function UserProfile() {
     formState: { errors },
   } = useForm();
 
-  const user = useSelector(selectUserInfo);
+  const userInfo = useSelector(selectUserInfo);
   const dispatch = useDispatch();
-  console.log(user);
+  console.log(userInfo);
 
   const handleEdit = (addressUpdate, index) => {
-    const newUser = { ...user, addresses: [...user.addresses] };
+    const newUser = { ...userInfo, addresses: [...userInfo.addresses] };
     newUser.addresses.splice(index, 1, addressUpdate);
     dispatch(updateUserAsync(newUser));
     setSelectedEditIndex(-1);
@@ -29,7 +29,7 @@ export default function UserProfile() {
 
   const handleEditForm = (index) => {
     setSelectedEditIndex(index); 
-    const address = user.addresses[index];
+    const address = userInfo.addresses[index];
     setValue("name", address.name);
     setValue("email", address.email);
     setValue("city", address.city);
@@ -40,13 +40,13 @@ export default function UserProfile() {
     
   };
   const handleRemove = (e, index) => {
-    const newUser = { ...user, addresses: [...user.addresses] };
+    const newUser = { ...userInfo, addresses: [...userInfo.addresses] };
     newUser.addresses.splice(index, 1); 
     dispatch(updateUserAsync(newUser));
   };
 
   const handleAdd = (address) => {
-    const newUser = { ...user, addresses: [...user.addresses, address] };
+    const newUser = { ...userInfo, addresses: [...userInfo.addresses, address] };
     dispatch(updateUserAsync(newUser));
     setShowAddressForm(false);
   };
@@ -54,13 +54,13 @@ export default function UserProfile() {
     <div className="mx-auto max-w-7xl px-4 mt-12  bg-white py-6 sm:px-6 lg:px-8">
       <div className="border-t border-gray-200 px-4 py-6">
         <h1 className="text-3xl font-bold tracking-tight text-gray-900">
-          Name: {user.name ? user.name : "New User"}
+          Name: {userInfo.name ? userInfo.name : "New User"}
         </h1>
         <h3 className="text-xl my-5 text-red-900 font-bold">
-          email address:{user.email}
+          email address:{userInfo.email}
         </h3>
-        {user.role === "admin" && (<h3 className="text-xl my-5 text-red-900 font-bold">
-          role:{user.role}
+        {userInfo.role === "admin" && (<h3 className="text-xl my-5 text-red-900 font-bold">
+          role:{userInfo.role}
         </h3>)}
 
         <div className="border-t border-gray-20(0 px-4 py-6 sm:px-6">
@@ -266,7 +266,7 @@ export default function UserProfile() {
               </div>
             </form>
           ) : null}
-          {user.addresses.map((address, index) => (
+          {userInfo.addresses.map((address, index) => (
             <div>
               {selectedEditIndex === index ? (
                 <form

@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { ITEMS_PER_PAGE } from "../../../app/common";
+import { discountedPrice, ITEMS_PER_PAGE } from "../../../app/common";
 import {
   fetchAllOrdersAsync,
   selectOrders,
@@ -91,13 +91,13 @@ export default function AdminOrder() {
                     <div className="flex items-center">
                       <div>
                         <img
-                          src={item.thumbnail}
-                          alt={item.title}
+                          src={item.product.thumbnail}
+                          alt={item.product.title}
                           className="w-8 h-9 rounded-full"
                         />
                       </div>
                       <span>
-                        {item.title}-#{item.quantity}-${item.price}
+                        {item.product.title}-#{item.quantity}-${discountedPrice(item.product)}
                       </span>
                     </div>
                   ))}

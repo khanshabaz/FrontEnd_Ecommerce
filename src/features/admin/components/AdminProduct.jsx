@@ -28,7 +28,7 @@ import {
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  fetchAllProductsAsync,
+
   fetchBrandsAsync,
   fetchCategoriesAsync,
   fetchProductsByFiltersAsync,
@@ -59,6 +59,8 @@ export default function AdminProduct() {
   const [page, setPage] = useState(1);
   const brands = useSelector(selectBrands);
   const categories = useSelector(selectCategories);
+  const [search, setSearch] = useState("");
+
 
   const filters = [
     {
@@ -103,14 +105,16 @@ export default function AdminProduct() {
     setPage(page);
   };
 
-  useEffect(() => {
-    dispatch(fetchAllProductsAsync());
-  }, [dispatch]);
+  const handleSearch = (e) => {
+    const searchTerm = e.target.value;
+    // console.log(searchTerm)
+    setSearch(searchTerm);
+  };
 
   useEffect(() => {
     const pagination = { _page: page, _per_page: ITEMS_PER_PAGE };
-    dispatch(fetchProductsByFiltersAsync({ filter, sort, pagination }));
-  }, [dispatch, filter, sort, page]);
+    dispatch(fetchProductsByFiltersAsync({ filter, sort, pagination, search, admin:true}));
+  }, [dispatch, filter, sort, page,  search]);
 
   useEffect(() => {
     dispatch(fetchBrandsAsync());
@@ -210,7 +214,34 @@ export default function AdminProduct() {
               {" "}
               Admin Prodcuts
             </h1>
-
+            <form className="max-w-md sm:col-span-2 sm:p-6">
+              <div className="relative">
+                <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                  <svg
+                    className="w-4 h-4 text-gray-500 dark:text-gray-400"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                    />
+                  </svg>
+                </div>
+                <input
+                  type="search"
+                  id="search"
+                  className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="Search Products..."
+                  onChange={handleSearch}
+                />
+              </div>
+            </form>
             <div className="flex items-center">
               <Menu as="div" className="relative inline-block text-left">
                 <div>
@@ -388,6 +419,9 @@ export default function AdminProduct() {
                             </div>
                             {product.deleted && (<div>
                                 <p className="text-sm text-red-400">Product deleted</p>
+                              </div>)}
+                              {product.stock<=0 && (<div>
+                                <p className="text-sm text-red-400">out of stock</p>
                               </div>)}
                           </div>
                           <div className="mt-5">

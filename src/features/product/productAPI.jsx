@@ -1,15 +1,9 @@
-export function fetchAllProducts() {
-  return new Promise(async (resolve) => {
-    const response = await fetch("http://localhost:3001/products");
-    const data = await response.json();
-    resolve({ data });
-  });
-}
+
 
 export function fetchProductById(id) {
   return new Promise(async (resolve) => {
     console.log("API called");
-    const response = await fetch("http://localhost:3001/products/" + id);
+    const response = await fetch("http://localhost:3000/products/" + id);
     const data = await response.json();
     resolve({ data });
   });
@@ -17,14 +11,13 @@ export function fetchProductById(id) {
 
 // http://localhost:5173/product-detail/1
 
-export function fetchProductsByFilters(filter, sort, pagination,search) {
+export function fetchProductsByFilters(filter, sort, pagination,search,admin) {
   //TODO:Multiple Select Categories from Backend
   let queryString = "";
   for (let key in filter) {
     const categoryValues = filter[key];
     if (categoryValues.length) {
-      queryString +=
-        categoryValues.map((value) => `${key}=${value}`).join("&") + "&";
+      queryString += `${key}=${categoryValues}&`;
     }
   }
   for (let key in sort) {
@@ -35,28 +28,30 @@ export function fetchProductsByFilters(filter, sort, pagination,search) {
     queryString += `${key}=${pagination[key]}&`;
   }
 
+  if(admin){
+    queryString+=`admin=true`;
+  }
   return new Promise(async (resolve) => {
-    console.log(queryString);
-    const response = await fetch(
-      "http://localhost:3001/products?" + queryString
-    );
-    const product = await response.json();
-    console.log(product);
-    const data = product.data;
+
+
     
-    const totalItems = product.items;
-    const filterProducts=data.filter((product)=>{
-      const matchesBrand=!filter.brand || !filter.brand.length || filter.brand.includes(product.brand);
-      const matchesSearch=!search || product.title.toLowerCase().includes(search.toLowerCase());
-      return matchesBrand && matchesSearch;
-    })
-    resolve({ data: { products: data, totalItems: totalItems, filterProducts:filterProducts } });
+    const response = await fetch(
+      "http://localhost:3000/products?" + queryString
+    );
+    const data = await response.json();
+  //Json-Server  
+    const filterProducts = data.filter((product) =>
+      product.title.toLowerCase().includes(search.toLowerCase())
+    );
+    const totalItems = await response.headers.get("X-Total-Count");
+    resolve({ data: { products: data, totalItems: +totalItems, filterProducts:filterProducts } });
   });
 }
 
+
 export function fetchBrands() {
   return new Promise(async (resolve) => {
-    const response = await fetch("http://localhost:3001/brands");
+    const response = await fetch("http://localhost:3000/brands");
     const data = await response.json();
     resolve({ data });
   });
@@ -64,15 +59,16 @@ export function fetchBrands() {
 
 export function fetchCategories() {
   return new Promise(async (resolve) => {
-    const response = await fetch("http://localhost:3001/categories");
+    const response = await fetch("http://localhost:3000/categories");
     const data = await response.json();
     resolve({ data });
   });
 }
 
+
 export function createProduct(product) {
   return new Promise(async (resolve) => {
-    const response = await fetch("http://localhost:3001/products", {
+    const response = await fetch("http://localhost:3000/products", {
       method: "POST",
       body: JSON.stringify(product),
       headers: { "content-type": "application/json" },
@@ -86,7 +82,7 @@ export function createProduct(product) {
 export function updateProduct(update) {
   return new Promise(async (resolve) => {
     const response = await fetch(
-      "http://localhost:3001/products/" + update.id,
+      "http://localhost:3000/products/" + update.id,
       {
         method: "PATCH",
         body: JSON.stringify(update),
