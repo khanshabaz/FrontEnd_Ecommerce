@@ -15,16 +15,16 @@ const initialState = {
 
 export const fetcheLoggedInUserOrdersAsync = createAsyncThunk(
   "user/fetcheLoggedInUserOrders",
-  async (userId) => {
-    const response = await fetcheLoggedInUserOrders(userId);
+  async () => {
+    const response = await fetcheLoggedInUserOrders();
     return response.data;
   }
 );
 
 export const fetchLoggedInUserAsync = createAsyncThunk(
   "user/fetcheLoggedInUser",
-  async (userId) => {
-    const response = await fetcheLoggedInUser(userId);
+  async () => {
+    const response = await fetcheLoggedInUser();
     return response.data;
   }
 );

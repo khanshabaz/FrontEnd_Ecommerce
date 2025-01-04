@@ -8,7 +8,7 @@ import {
   selectedProductById,
 } from "../productSlice";
 import { addToCartAsync } from "../../cart/cartSlice";
-import { selectLoggedInUser } from "../../auth/authSlice";
+
 import { discountedPrice } from "../../../app/common";
 
 const colors = [
@@ -41,14 +41,13 @@ export default function ProductDetail() {
   const [selectedSize, setSelectedSize] = useState(sizes[2]);
 
   const product = useSelector(selectedProductById);
-  const user =useSelector(selectLoggedInUser)
   const dispatch = useDispatch();
   const params = useParams();
   
 
 const handleCart=(e)=>{
 e.preventDefault();
-const newItem={product:product.id,quantity:1,user:user.id};
+const newItem={product:product.id,quantity:1};
 dispatch(addToCartAsync(newItem))
 }
 

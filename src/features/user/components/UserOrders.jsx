@@ -17,12 +17,12 @@ export default function UserOrders() {
 
 
   useEffect(() => {
-    dispatch(fetcheLoggedInUserOrdersAsync(userInfo.id));
-  }, [dispatch,userInfo.id]);
+    dispatch(fetcheLoggedInUserOrdersAsync());
+  }, [dispatch]);
 
   return (
     <div>
-      {orders.map((order) => (
+      {orders && orders.map((order) => (
         <div className="mx-auto max-w-7xl px-4 mt-12  bg-white py-6 sm:px-6 lg:px-8">
           <div className="border-t border-gray-200 px-4 py-6">
             <h1 className="text-3xl font-bold tracking-tight text-gray-900">

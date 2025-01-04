@@ -1,15 +1,15 @@
-export function fetcheLoggedInUserOrders(userId) {
+export function fetcheLoggedInUserOrders() {
     return new Promise(async (resolve) =>{
-      const response = await fetch('http://localhost:3000/orders/user/'+userId) 
+      const response = await fetch('http://localhost:3000/orders/own/') 
       const data = await response.json()
       resolve({data})
     }
     );
   }
 
-  export function fetcheLoggedInUser(userId) {
+  export function fetcheLoggedInUser() {
     return new Promise(async (resolve) =>{
-      const response = await fetch('http://localhost:3000/users/'+userId) 
+      const response = await fetch('http://localhost:3000/users/own') 
       const data = await response.json()
       resolve({data})
     }

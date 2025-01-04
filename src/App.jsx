@@ -19,7 +19,7 @@ import UserOrderPage from "./pages/UserOrderPage";
 
 import UserProfilePage from "./pages/UserProfile";
 import { fetchLoggedInUserAsync } from "./features/user/userSlice";
-import { selectLoggedInUser } from "./features/auth/authSlice";
+import { checkAuthAsync, selectLoggedInUser, selectUserChecked } from "./features/auth/authSlice";
 import LogOut from "./features/auth/components/Logout";
 import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 import AdminProtected from "./features/auth/components/ProtectedAdmin";
@@ -28,6 +28,7 @@ import AdminProductDetailPage from "./pages/AdminProductDetailPage";
 import ProtectedAdmin from "./features/auth/components/ProtectedAdmin";
 import AdminProductFormPage from "./pages/AdminProductFormPage";
 import AdminOrderPage from "./pages/AdminOrderPage";
+import ResetPasswordPage from "./pages/ResetPasswordPage";
 
 
 const router = createBrowserRouter([
@@ -108,6 +109,10 @@ const router = createBrowserRouter([
     ),
   },
   {
+    path: "/reset-password",
+    element: <ResetPasswordPage />,
+  },
+  {
     path: "/checkout",
     element: (
       <Protected>
@@ -142,18 +147,23 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+  const userChecked=useSelector(selectUserChecked)
   const dispatch = useDispatch();
   const user = useSelector(selectLoggedInUser);
 
+  useEffect(()=>{
+    dispatch(checkAuthAsync())
+  },[dispatch])
+
   useEffect(() => {
     if (user) {
-      dispatch(fetchItemsByUserIdAsync(user.id));
-      dispatch(fetchLoggedInUserAsync(user.id));
+      dispatch(fetchItemsByUserIdAsync());
+      dispatch(fetchLoggedInUserAsync());
     } 
   }, [dispatch, user]);
   return (
     <>
-      <RouterProvider router={router} />
+      {userChecked && <RouterProvider router={router} />}
     </>
   );
 }
