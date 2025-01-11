@@ -1,16 +1,20 @@
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
+import { resetPasswordAsync } from "../authSlice";
 
 export default function ResetPassword() {
   const dispatch = useDispatch();
-
+const query=new URLSearchParams(window.location.search)
+const token=query.get("token");
+const email=query.get("email")
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
+  console.log(token,email)
   return (
     <>
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -29,7 +33,8 @@ export default function ResetPassword() {
           <form
             noValidate
             onSubmit={handleSubmit((data) => {
-              console.log(data.email);
+              
+              dispatch(resetPasswordAsync({email,token, password:data.password}))
             })}
             className="space-y-6"
           >

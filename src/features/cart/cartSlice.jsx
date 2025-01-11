@@ -66,6 +66,7 @@ export const cartSlice = createSlice({
       .addCase(fetchItemsByUserIdAsync.fulfilled, (state, action) => {
         state.status = "idle";
         state.items=action.payload;
+        state.cartLoaded=true;
       })
       .addCase(fetchItemsByUserIdAsync.rejected, (state, action) => {
         state.status = "idle";

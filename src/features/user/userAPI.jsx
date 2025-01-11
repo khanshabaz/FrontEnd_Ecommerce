@@ -1,6 +1,6 @@
 export function fetcheLoggedInUserOrders() {
     return new Promise(async (resolve) =>{
-      const response = await fetch('http://localhost:3000/orders/own/') 
+      const response = await fetch('http://localhost:3000/orders/own') 
       const data = await response.json()
       resolve({data})
     }

@@ -7,12 +7,12 @@ import { selectUserInfo } from "../../user/userSlice";
 export default function ProtectedAdmin({children}){
     const user=useSelector(selectLoggedInUser)
     const userInfo=useSelector(selectUserInfo)
-
+console.log(userInfo.role)
     if(!user){
     return(
         <Navigate to="/login" replace={true}></Navigate>
     )}
-    if(user && userInfo.role!=="admin"){
+    if(userInfo && userInfo.role!=="admin"){
         return(
             <Navigate to="/" replace={true}></Navigate>
         )}

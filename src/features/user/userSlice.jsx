@@ -7,9 +7,7 @@ import {
 } from "./userAPI";
 
 const initialState = {
-  value: 0,
   status: "idle",
-  // userOrders: [],
   userInfo:null
 };
 
@@ -41,12 +39,7 @@ export const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    increment: (state) => {
-      state.value += 1;
-    },
-    decrement: (state) => {
-      state.value -= 1;
-    },
+
   },
   extraReducers: (builder) => {
     builder
@@ -76,7 +69,6 @@ export const userSlice = createSlice({
 
 export const selectUserOrder = (state) => state.user.userInfo.orders;
 export const selectUserInfo = (state) => state.user.userInfo;
-
 
 
 export default userSlice.reducer;

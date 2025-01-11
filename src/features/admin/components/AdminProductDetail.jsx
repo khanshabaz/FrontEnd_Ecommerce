@@ -8,7 +8,6 @@ import {
   selectedProductById,
 } from "../../product/productSlice";
 import { addToCartAsync } from "../../cart/cartSlice";
-import { discountedPrice } from "../../../app/common";
 
 const colors = [
   { name: "White", class: "bg-white", selectedClass: "ring-gray-400" },
@@ -102,7 +101,7 @@ dispatch(addToCartAsync(newItem))
                 ${product.price}
               </p>
               <p className="text-3xl tracking-tight text-gray-900">
-                ${discountedPrice(product)}
+                ${product.discountPrice}
               </p>
 
               {/* Reviews */}

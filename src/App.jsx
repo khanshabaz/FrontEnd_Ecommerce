@@ -22,14 +22,18 @@ import { fetchLoggedInUserAsync } from "./features/user/userSlice";
 import { checkAuthAsync, selectLoggedInUser, selectUserChecked } from "./features/auth/authSlice";
 import LogOut from "./features/auth/components/Logout";
 import ForgotPasswordPage from "./pages/ForgotPasswordPage";
-import AdminProtected from "./features/auth/components/ProtectedAdmin";
 import AdminHomePage from "./pages/AdminHome";
 import AdminProductDetailPage from "./pages/AdminProductDetailPage";
 import ProtectedAdmin from "./features/auth/components/ProtectedAdmin";
 import AdminProductFormPage from "./pages/AdminProductFormPage";
 import AdminOrderPage from "./pages/AdminOrderPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
-
+import { positions, Provider } from 'react-alert';
+import AlertTemplate from 'react-alert-template-basic';
+const options = {
+  timeout: 5000,
+  position: positions.BOTTOM_LEFT,
+};
 
 const router = createBrowserRouter([
   {
@@ -129,7 +133,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/orders",
+    path: "/my-orders",
     element: <UserOrderPage />,
   },
   {
@@ -147,8 +151,8 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  const userChecked=useSelector(selectUserChecked)
   const dispatch = useDispatch();
+  const userChecked=useSelector(selectUserChecked)
   const user = useSelector(selectLoggedInUser);
 
   useEffect(()=>{
@@ -163,7 +167,9 @@ function App() {
   }, [dispatch, user]);
   return (
     <>
-      {userChecked && <RouterProvider router={router} />}
+         {userChecked &&( <Provider template={AlertTemplate} {...options}>
+          <RouterProvider router={router} />
+        </Provider>)}
     </>
   );
 }

@@ -7,36 +7,36 @@ import {
   updateCartAsync,
 } from "../features/cart/cartSlice";
 
-import { useState } from "react";
+import {  useState } from "react";
 import {
   createOrderAsync,
   selectCurrentOrder,
 } from "../features/order/orderSlice";
-import { selectUserInfo,updateUserAsync} from "../features/user/userSlice";
-import { discountedPrice } from "../app/common";
+import { updateUserAsync} from "../features/user/userSlice";
+import { selectUserInfo} from "../features/user/userSlice";
+
 
 export default function Checkout() {
+  const dispatch = useDispatch();
+  const items = useSelector(selectItems);
   const user = useSelector(selectUserInfo);
   const [selectedAddress, setSelectedAddress] = useState(null);
   const [paymentMethod, setPaymentMethod] = useState(null);
   const currentOrder = useSelector(selectCurrentOrder);
 
+  console.log(user);
   const {
     register,
     handleSubmit,
     reset,
-    formState: { errors },
+    formState: { errors },  
   } = useForm();
 
-  const dispatch = useDispatch();
-  const items = useSelector(selectItems);
 
 
   const totalAmount =
-    Math.round(
-      items.reduce((amount, item) =>discountedPrice(item.product) * item.quantity + amount, 0) *
-        100
-    ) / 100;
+  
+      items.reduce((amount, item) =>item.product.discountPrice * item.quantity + amount, 0) ;
 
   const totalItems = items.reduce((total, item) => item.quantity + total, 0);
 
@@ -49,30 +49,32 @@ export default function Checkout() {
   };
 
   const handleAddress = (e) => {
-    console.log(user.addresses[e.target.value]);
     setSelectedAddress(user.addresses[e.target.value]);
   };
 
   const handlePayment = (e) => {
-    console.log(e.target.value);
     setPaymentMethod(e.target.value);
   };
 
   const handleOrder = (e) => {
-    const order = {
-      items,
-      totalAmount,
-      totalItems,
-      user:user.id,
-      paymentMethod,
-      selectedAddress,
-      status: "pending",
-    };
-    console.log(order)
-    dispatch(createOrderAsync(order));
+    if(selectedAddress && paymentMethod){
+      const order = {
+        items,
+        totalAmount,
+        totalItems,
+        user:user.id,
+        paymentMethod,
+        selectedAddress,
+        status: "pending",
+      };
+      dispatch(createOrderAsync(order));
+    }
   };
+
+
   return (
     <>
+     {!items.length  && <Navigate to="/" replace={true}></Navigate>}
       {currentOrder && (
         <Navigate
           to={`/order-success/${currentOrder.id}`}
@@ -88,7 +90,7 @@ export default function Checkout() {
                 dispatch(
                   updateUserAsync({
                     ...user,
-                    addresses: [...user.addresses, data],
+                    addresses: [...user.addresses, data]
                   })
                 );
                 reset();
@@ -248,7 +250,7 @@ export default function Checkout() {
                     <div className="mt-2">
                       <input
                         id="pincode"
-                        {...register("state", {
+                        {...register("pincode", {
                           required: "pincode is required",
                         })}
                         type="text"

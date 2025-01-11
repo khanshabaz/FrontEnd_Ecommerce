@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { discountedPrice, ITEMS_PER_PAGE } from "../../../app/common";
+import { ITEMS_PER_PAGE } from "../../../app/common";
 import {
   fetchAllOrdersAsync,
   selectOrders,
@@ -72,6 +72,12 @@ export default function AdminOrder() {
                 Status
               </th>
               <th scope="col" className="px-6 py-3">
+                Order Time
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Last Updated
+              </th>
+              <th scope="col" className="px-6 py-3">
                 Action
               </th>
             </tr>
@@ -86,7 +92,7 @@ export default function AdminOrder() {
                   {order.id}
                 </th>
 
-                <td className="px-6 py-4">
+                <td className=" py-4">
                   {order.items.map((item) => (
                     <div className="flex items-center">
                       <div>
@@ -97,13 +103,13 @@ export default function AdminOrder() {
                         />
                       </div>
                       <span>
-                        {item.product.title}-#{item.quantity}-${discountedPrice(item.product)}
+                        {item.product.title}-#{item.quantity}-${item.product.discountPrice}
                       </span>
                     </div>
                   ))}
                 </td>
-                <td className="px-6 py-4">${order.totalAmount}</td>
-                <td className="px-6 py-4">
+                <td className=" py-2">${order.totalAmount}</td>
+                <td className=" py-4">
                   <div>{order.selectedAddress.name}</div>
                   <div>{order.selectedAddress.street}</div>
                   <div>{order.selectedAddress.city}</div>
@@ -111,7 +117,7 @@ export default function AdminOrder() {
                   <div>{order.selectedAddress.pinCode}</div>
                   <div>{order.selectedAddress.phone}</div>
                 </td>
-                <td className="px-6 py-4">
+                <td className="px-2 py-4">
                   {order.id === editableOrderId ? (
                     <select onChange={(e) => handleUpdate(e, order)}>
                       <option value="pending">Pending</option>
@@ -125,12 +131,24 @@ export default function AdminOrder() {
                     </span>
                   )}
                 </td>
+                <td className="px-6 py-3 text-center">
+                  <div className="flex items-center justify-center">
+                    {order.createdAt?new Date(order.createdAt).toLocaleString():null}
+                  </div>
+                </td>
+                <td className="px-6 py-3 text-center">
+                  <div>
+                    {order.updatedAt?new Date(order.updatedAt).toLocaleString():null}
+                  </div>
+                </td>
                 <td className="px-6 py-4 ">
                   <PencilIcon
                     className="w-6 h6 cursor-pointer"
                     onClick={(e) => handleEdit(order)}
                   ></PencilIcon>
                 </td>
+
+              
               </tr>
             ))}
           </tbody>

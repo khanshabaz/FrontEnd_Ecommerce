@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Navigate } from "react-router-dom";
 import { deleteItemFromCartAsync, selectCartLoaded, selectItems, updateCartAsync } from "../cartSlice";
-import { discountedPrice } from "../../../app/common";
 
 export default function Cart() {
   const dispatch = useDispatch();
@@ -12,7 +11,7 @@ export default function Cart() {
 
   const totalAmount =
     Math.round(
-      items.reduce((amount, item) => discountedPrice(item.product) * item.quantity + amount, 0) *
+      items.reduce((amount, item) => item.product.discountPrice * item.quantity + amount, 0) *
         100
     ) / 100;
 
@@ -56,7 +55,7 @@ const handleRemove=(e,id)=>{
                           <h3>
                             <a href={item.product.id}>{item.product.title}</a>
                           </h3>
-                          <p className="ml-4">${discountedPrice(item.product)}</p>
+                          <p className="ml-4">${item.product.discountPrice}</p>
                         </div>
                         <p className="mt-1 text-sm text-gray-500">
                           {item.product.brand}

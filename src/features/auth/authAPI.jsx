@@ -50,8 +50,19 @@ export function checkAuth() {
 }
 
 export function signOut() {
-  return new Promise(async (resolve) => {
-    resolve({ data: "success" });
+  return new Promise(async (resolve, reject) => {
+    try {
+      const response = await fetch('http://localhost:3000/auth/logout');
+      if (response.ok) {
+        resolve({ data:'success' });
+      } else {
+        const error = await response.text();
+        reject(error);
+      }
+    } catch (error) {
+      console.log(error)
+      reject( error );
+    }
   });
 }
 
@@ -77,6 +88,7 @@ export function resetPasswordRequest(email) {
 }
 
 export function resetPassword(data) {
+  console.log(data)
   return new Promise(async (resolve, reject) => {
     try {
       const response = await fetch("http://localhost:3000/auth/reset-password", {
@@ -96,3 +108,5 @@ export function resetPassword(data) {
     }
   });
 }
+
+
