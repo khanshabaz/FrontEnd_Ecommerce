@@ -47,3 +47,27 @@ export function updateOrder(order) {
   }
   );
 }
+
+export function orderPaymentId(id) {
+  return new Promise(async (resolve) =>{
+    const response = await fetch('http://localhost:3000/payment',{
+      method:'POST',
+      body:JSON.stringify({id}),
+      headers:{'content-type':'application/json'},
+    }) 
+    const data = await response.json()
+    //payment_ID
+    //Payment_Link
+    try{
+      if(data.payment_link_url){
+        window.location.href=data.payment_link_url;
+      }
+    }catch(error){
+      resolve({error})
+    }
+
+    resolve({data})
+  }
+  );
+}
+

@@ -30,6 +30,7 @@ import AdminOrderPage from "./pages/AdminOrderPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 import { positions, Provider } from 'react-alert';
 import AlertTemplate from 'react-alert-template-basic';
+import PaymentPage from "./pages/PaymentPage";
 const options = {
   timeout: 5000,
   position: positions.BOTTOM_LEFT,
@@ -147,6 +148,10 @@ const router = createBrowserRouter([
   {
     path: "/order-success/:id",
     element: <OrderSuccessPage />,
+  },
+  {
+    path: "/order-payment",
+    element: <PaymentPage/>,
   },
 ]);
 

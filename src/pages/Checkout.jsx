@@ -75,11 +75,14 @@ export default function Checkout() {
   return (
     <>
      {!items.length  && <Navigate to="/" replace={true}></Navigate>}
-      {currentOrder && (
+     {currentOrder && currentOrder.paymentMethod === 'cash' && (
         <Navigate
           to={`/order-success/${currentOrder.id}`}
           replace={true}
         ></Navigate>
+      )}
+      {currentOrder && currentOrder.paymentMethod === 'card' && (
+        <Navigate to={`/order-payment`} replace={true}></Navigate>
       )}
       <div className="mx-auto max-w-7xl px-4 mt-12  bg-white py-6 sm:px-6 lg:px-8">
         <div className="grid grid-col-span-1 gap-x-8 gap-y-8 lg:grid-cols-5">

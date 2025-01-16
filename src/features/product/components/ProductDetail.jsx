@@ -7,8 +7,11 @@ import {
   fetchAllProductsByIdAsync,
   selectedProductById,
 } from "../productSlice";
-import { addToCartAsync } from "../../cart/cartSlice";
+import { addToCartAsync, selectItems } from "../../cart/cartSlice";
+import { useAlert } from 'react-alert'
 
+
+ 
 
 const colors = [
   { name: "White", class: "bg-white", selectedClass: "ring-gray-400" },
@@ -38,18 +41,24 @@ function classNames(...classes) {
 export default function ProductDetail() {
   const [selectedColor, setSelectedColor] = useState(colors[0]);
   const [selectedSize, setSelectedSize] = useState(sizes[2]);
-
+  const items = useSelector(selectItems);
   const product = useSelector(selectedProductById);
   const dispatch = useDispatch();
   const params = useParams();
+  const alert = useAlert()
   
-
 const handleCart=(e)=>{
-e.preventDefault();
-const newItem={product:product.id,quantity:1};
+  e.preventDefault();
+    if (items.findIndex((item) => item.product.id === product.id) < 0) {
+      const newItem = {
+        product: product.id,
+        quantity: 1,
+      };
 dispatch(addToCartAsync(newItem))
+}else{
+  alert.error("Item already Added");
 }
-
+}
   useEffect(() => {
     dispatch(fetchAllProductsByIdAsync(params.id));//8
   }, [dispatch, params.id]);
